@@ -9,12 +9,12 @@ The Atmega32 HAL and MCAL Drivers repository aims to simplify development for At
 # Features
 
 - **HAL (Hardware Abstraction Layer)  :**  
-- **Abstracts hardware interfaces** such as LCD, KEYPAD, LM35, MOTOR, etc.
-- Provides a consistent API for interacting with these peripherals.
+ **Abstracts hardware interfaces** such as LCD, KEYPAD, LM35, MOTOR, etc.
+ Provides a consistent API for interacting with these peripherals.
 
 - **MCAL (Microcontroller Abstraction Layer):** 
-- **Pre-implemented drivers** for various peripherals commonly found in Atmega32-based systems.
-- Includes drivers for UART, SPI, ADC, Timer, etc.
+ **Pre-implemented drivers** for various peripherals commonly found in Atmega32-based systems.
+ Includes drivers for UART, SPI, ADC, Timer, etc.
 
 # Additional Benefits
 - **Modular and Reusable Code:** Designed for easy integration into projects, with a modular code structure that facilitates code reuse and scalability.
