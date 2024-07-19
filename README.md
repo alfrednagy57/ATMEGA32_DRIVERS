@@ -28,7 +28,7 @@ The Atmega32 HAL and MCAL Drivers repository aims to simplify development for At
 atmega32_HAL_MCAL_Drivers/
 │
 │
-├── Common/
+├── Common/              # Standard types , Bit math Directives , Mapping function
 │   ├── Map/
 │   │   ├──Map.c
 │   │   ├──Map.h
