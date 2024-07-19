@@ -8,7 +8,7 @@ The Atmega32 HAL and MCAL Drivers repository aims to simplify development for At
 
 # Features
 
-- ** HAL (Hardware Abstraction Layer): ** 
+- ** HAL (Hardware Abstraction Layer) ** :  
 - ** Abstracts hardware interfaces ** such as LCD, KEYPAD, LM35, MOTOR, etc.
 Provides a consistent API for interacting with these peripherals.
 
