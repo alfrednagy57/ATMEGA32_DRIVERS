@@ -15,7 +15,7 @@
  *SCL frequency ----->REQUIRED_SCL_IN_KILOS
  *
  * */
-void CALC_TWPS_TWBR(u8 REQUIRED_SCL_IN_KILOS)
+void CALC_TWPS_TWBR(const u8 REQUIRED_SCL_IN_KILOS)
 {
 	u8 __4_POWER_TWPS = 0;
 	u8 CALCULATED_TWBR = 0;
@@ -58,7 +58,7 @@ void CALC_TWPS_TWBR(u8 REQUIRED_SCL_IN_KILOS)
 }
 
 /*pass zero if the master will not be addressed -----> always transmitter*/
-void TWI_MasterInit(u8 MasterAdd , u8 required_scl)
+void TWI_MasterInit(const u8 MasterAdd ,const  u8 required_scl)
 {
 	GPIO_SetDirectionForPin(TWI_GROUP_ID,TWI_SCL_ID,GPIO_Output);//set pin0 group c to OUTPUT ----->SCL pin
 
@@ -74,7 +74,7 @@ void TWI_MasterInit(u8 MasterAdd , u8 required_scl)
 	TWCR_REG.BITS.TWEN=1;
 }
 
-void TWI_SlaveInit(u8 SlaveAdd)
+void TWI_SlaveInit(const u8 SlaveAdd)
 {
 	GPIO_SetDirectionForPin(TWI_GROUP_ID,TWI_SCL_ID,GPIO_Input);//set pin0 group c to INPUT ----->SCL pin
 
@@ -162,7 +162,7 @@ TWI_ErrStatus TWI_SendRepeatedStart()
 	return Local_ErrState;
 }
 
-TWI_ErrStatus TWI_MasterWriteDataByte(u8 DataByte)
+TWI_ErrStatus TWI_MasterWriteDataByte(const u8 DataByte)
 {
 	GPIO_SetDirectionForPin(TWI_GROUP_ID,TWI_SDA_ID,GPIO_Output);//set pin1 group c to OUTPUT ----->SDA pin
 
@@ -237,7 +237,7 @@ TWI_ErrStatus TWI_MasterReadDataByte(u8* ReceiveDate)
 
 	return Local_ErrState;
 }
-TWI_ErrStatus TWI_SlaveWriteDataByte(u8 DataByte)
+TWI_ErrStatus TWI_SlaveWriteDataByte(const u8 DataByte)
 {
 	GPIO_SetDirectionForPin(TWI_GROUP_ID,TWI_SDA_ID,GPIO_Output);//set pin1 group c to OUTPUT ----->SDA pin
 

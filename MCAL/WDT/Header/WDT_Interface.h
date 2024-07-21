@@ -15,6 +15,6 @@ void WDT_Enable();
 
 void WDT_Disable();
 
-void WDT_Sleep(Type_PreScale Time);
+void WDT_Sleep(const Type_PreScale Time);
 
 #endif /* MCAL_WDT_HEADER_WDT_INTERFACE_H_ */

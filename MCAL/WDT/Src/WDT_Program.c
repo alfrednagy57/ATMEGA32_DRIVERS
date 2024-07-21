@@ -20,7 +20,7 @@ void WDT_Disable()
 	WDTCR_REG.BYTE=(WDTCR_REG.BYTE&WDTCR_MASK)|(TURN_OFF_CODE_MASK);
 	WDTCR_REG.BYTE=0;
 }
-void WDT_Sleep(Type_PreScale Time)
+void WDT_Sleep(const Type_PreScale Time)
 {
 	WDTCR_REG.BYTE=(WDTCR_REG.BYTE&WDT_SET_CLOCK)|(Time&WDT_PRSCALE_MASK);
 }

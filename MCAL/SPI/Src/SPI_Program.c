@@ -9,7 +9,7 @@
 #include "../../GPIO/Header/GPIO_Interface.h"
 //to set another master and de-activate a master write zero on ss pin.
 //note : if ss pin is configured as input in master.
-void SPI_Init(SPI_CONFIG *CONFIG)
+void SPI_Init(const SPI_CONFIG *CONFIG)
 {
 	if(CONFIG->SPI_ROLE==MASTER)
 	{

@@ -10,7 +10,7 @@
 #ifndef MCAL_SPI_HEADER_SPI_INTERFACE_H_
 #define MCAL_SPI_HEADER_SPI_INTERFACE_H_
 
-void SPI_Init(SPI_CONFIG *CONFIG);
+void SPI_Init(const SPI_CONFIG *CONFIG);
 u8 SPI_TransCever(const u8 Data);
 void SPI_TransCever_SendString(u8 * DATA_STRING);
 

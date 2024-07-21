@@ -44,7 +44,7 @@ void ADC_Init(const ADC_Config *CONFIG)
  *
  * where it firstly choose the channel then
  */
-u16 ADC_Get_DigitalValue(u8 Channel)
+u16 ADC_Get_DigitalValue(const u8 Channel)
 {
 	/*configuring the port direction as input*/
 	/*the used mode or channel must be set as input before using */

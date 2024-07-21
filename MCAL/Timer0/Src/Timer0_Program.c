@@ -14,7 +14,7 @@
 static void (*GP_OV)(void )=NULL;
 static void (*GP_CM)(void )=NULL;
 
-void Timer0_Init(TIMER0_Config *CONFIG)
+void Timer0_Init(const TIMER0_Config *CONFIG)
 {
 //	SetBit(OC0_PORTID,OC0_PINID);
 
@@ -22,25 +22,25 @@ void Timer0_Init(TIMER0_Config *CONFIG)
 
 	Timer0_OCR0_REG=CONFIG->compare_value;
 
-	if(CONFIG->mode==Normal)
+	if(CONFIG->mode==Normal_Timer0)
 	{
 		Timer0_TCCR0_REG.Bits.FOC0=1;
 		Timer0_TCCR0_REG.Bits.WGM00=0;
 		Timer0_TCCR0_REG.Bits.WGM01=0;
 	}
-	if(CONFIG->mode==Phase_Correct)
+	if(CONFIG->mode==Phase_Correct_Timer0)
 	{
 		Timer0_TCCR0_REG.Bits.FOC0=0;
 		Timer0_TCCR0_REG.Bits.WGM00=1;
 		Timer0_TCCR0_REG.Bits.WGM01=0;
 	}
-	if(CONFIG->mode==CTC)
+	if(CONFIG->mode== CTC_Timer0)
 	{
 		Timer0_TCCR0_REG.Bits.FOC0=1;
 		Timer0_TCCR0_REG.Bits.WGM00=0;
 		Timer0_TCCR0_REG.Bits.WGM01=1;
 	}
-    if (CONFIG->mode==FastPWM)
+    if (CONFIG->mode==FastPWM_Timer0)
 	{
 		Timer0_TCCR0_REG.Bits.FOC0=0;
 		Timer0_TCCR0_REG.Bits.WGM00=1;
@@ -76,7 +76,7 @@ void Timer0_Init(TIMER0_Config *CONFIG)
 	/* Disable Timer/Counter0 Overflow Interrupt */
 	Timer0_TIMSK_REG.Bits.TOIE0 = 0;
 }
-void Timer0_UpdateDutyCycle(TIMER0_Compare_Type OutputMode,u8 DutyCycle)
+void Timer0_UpdateDutyCycle(const TIMER0_Compare_Type OutputMode,const u8 DutyCycle)
 {
 	if(OutputMode==CTC_CLEAR__PWM_NON_INVERTING)
 	{
@@ -87,7 +87,7 @@ void Timer0_UpdateDutyCycle(TIMER0_Compare_Type OutputMode,u8 DutyCycle)
 		Timer0_OCR0_REG=(u8)((u16)(DutyCycle*255)/100);
 	}
 }
-void Timer0_CallBackFnc_OV(void(*pf)(void))
+void Timer0_CallBackFnc_OV(const void(*pf)(void))
 {
 	if(pf!=NULL)
 	{
@@ -95,7 +95,7 @@ void Timer0_CallBackFnc_OV(void(*pf)(void))
 	}
 }
 
-void Timer0_CallBackFnc_CM(void(*pf)(void))
+void Timer0_CallBackFnc_CM(const void(*pf)(void))
 {
 	if(pf!=NULL)
 	{

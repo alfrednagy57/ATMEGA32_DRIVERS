@@ -11,7 +11,8 @@
 
 void Servo_Init()
 {
-	CONFIG_TYPE CONFIG={1,0,0,20000,0,0,F_CPU_8_T1,Fast_ICR1_TOP,CLEAR_OC1_A_B_NON_INVERTING_PWM_MODE,OC1_A_B_DISCONNECTED,NO_INTERRUPT};
+	/*timer1 must be in icr mode */
+	CONFIG_TYPE_Timer1 CONFIG={0,0,0,20000,F_CPU_8_T1};
 
 	Timer1_Init(&CONFIG);
 }
@@ -29,5 +30,5 @@ void Servo_SetAngle(f32 Angle)
 	//Angle=Angle*5.555555556+999;
 
 	// Set the compare value
-	Timer1_SetCompareVal((u16)Angle);
+	Timer1_SetCompareVal_A((u16)Angle);
 }

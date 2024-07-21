@@ -10,22 +10,22 @@
 #ifndef MCAL_TWI_HEADER_TWI_INTERFACE_H_
 #define MCAL_TWI_HEADER_TWI_INTERFACE_H_
 
-void CALC_TWPS_TWBR(u8 REQUIRED_SCL_IN_KILOS);
+void CALC_TWPS_TWBR(const u8 REQUIRED_SCL_IN_KILOS);
 /*pass zero if the master will not be addressed -----> always transmitter*/
-void TWI_MasterInit(u8 MasterAdd , u8 required_scl);
+void TWI_MasterInit(const u8 MasterAdd ,const  u8 required_scl);
 
-void TWI_SlaveInit(u8 SlaveAdd);
+void TWI_SlaveInit(const u8 SlaveAdd);
 
 TWI_ErrStatus TWI_SendStartCondition();
 
 TWI_ErrStatus TWI_SendRepeatedStart();
 /*sending slave add + R/W   is simply sending data where slave add is 7 BITS then the R/W BIT comes */
 
-TWI_ErrStatus TWI_MasterWriteDataByte(u8 DataByte);
+TWI_ErrStatus TWI_MasterWriteDataByte(const u8 DataByte);
 
 TWI_ErrStatus TWI_MasterReadDataByte(u8* ReceiveDate);
 
-TWI_ErrStatus TWI_SlaveWriteDataByte(u8 DataByte);
+TWI_ErrStatus TWI_SlaveWriteDataByte(const u8 DataByte);
 
 TWI_ErrStatus TWI_SlaveReadDataByte(u8* ReceiveDate);
 

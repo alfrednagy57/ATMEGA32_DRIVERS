@@ -11,7 +11,7 @@
 
 static void (*G_PointerToFnc)(void)=NULL;
 
-void ICU_setCallBack(void (*a_ptr)(void))
+void ICU_setCallBack(const void (*a_ptr)(void))
 {
 	if(a_ptr!=NULL)
 	{
@@ -19,7 +19,7 @@ void ICU_setCallBack(void (*a_ptr)(void))
 	}
 }
 
-void ICU_Init(ICU_ClockType Clock,ICU_EdgeType Edge)
+void ICU_Init(const ICU_ClockType Clock,const ICU_EdgeType Edge)
 {
 	GIE_Enable();
 
@@ -63,7 +63,7 @@ void ICU_Init(ICU_ClockType Clock,ICU_EdgeType Edge)
 	ClrBit(DIO_DDRD_ICU,DDR_PIN6);
 }
 
-void ICU_setEdgeType(ICU_EdgeType edgeType)
+void ICU_setEdgeType(const ICU_EdgeType edgeType)
 {
 	//set edge
 	TCCR1B_REG.BYTE = (TCCR1B_REG.BYTE & TCCR1B_EDGE_SELECT_MASK) | (edgeType << 6);

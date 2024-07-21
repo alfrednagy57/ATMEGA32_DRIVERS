@@ -5,82 +5,73 @@
  *      Author: 20102
  */
 
-#include"../Header/Timer1_Interface.h"
+#include "../Header/Timer1_Interface.h"
+#include "../../SREG/GIE.h"
 
 static void (* G_Ptr_OV)(void)=NULL;
 static void (* G_Ptr_CM_B)(void)=NULL;
 static void (* G_Ptr_CM_A)(void)=NULL;
 
-void Timer1_Init(CONFIG_TYPE * CONFIG)
+void Timer1_Init(const CONFIG_TYPE_Timer1 * CONFIG)
 {
 	//set wave generating
-	//	13 12 11 10
-	//	1  1  1   0
-	TCCR1A_REG.BYTE= (TCCR1A_REG.BYTE & TCCR1A_CLK_MASK) | ((CONFIG->WGM)& WCM_10_11_MASK) ;
-	TCCR1B_REG.BYTE= (TCCR1B_REG.BYTE &TCCR1B_CLK_MASK) | ((CONFIG->WGM)& WCM_12_13_MASK) ;
+	TCCR1A_REG.Bits.WGM10= 0;
+	TCCR1A_REG.Bits.WGM11= 1;
+
+	TCCR1B_REG.Bits.WGM12= 1;
+	TCCR1B_REG.Bits.WGM13= 1;
 
 	//configuring FOC1 A-B
-	TCCR1A_REG.Bits.FOC1A=CONFIG->FOC1A_STATE;
-	TCCR1A_REG.Bits.FOC1B=CONFIG->FOC1B_STATE;
+	/*foc must be = 1 if the desired pin is operating as non_pwm*/
+	TCCR1A_REG.Bits.FOC1A=0;
+	TCCR1A_REG.Bits.FOC1B=0;
 
 	//Set ICR
-	ICR1_REG=CONFIG->PRE_VALUE_ICR1;
+	ICR1_REG=CONFIG->Timer1_ICR1_REG;
 
 	//set compare Val
-	Timer1_OCR1A=CONFIG->PRE_VALUE_OCR1A;
-	Timer1_OCR1B=CONFIG->PRE_VALUE_OCR1B;
+	Timer1_OCR1A=CONFIG->Timer1_OCR1A_VAL;
+	Timer1_OCR1B=CONFIG->Timer1_OCR1B_VAL;
 
 	//set TCNT VAL
-	TCNT1_REG=CONFIG->PRE_VALUE_TCNT1;
+	TCNT1_REG=CONFIG->Timer1_TCNT1_VAL;
 
 	//config coma
-	TCCR1A_REG.BYTE=(TCCR1A_REG.BYTE & TCCR1A_COMA_MASK ) | (CONFIG->COM_A);
+	TCCR1A_REG.Bits.COM1A0 = 0;
+	TCCR1A_REG.Bits.COM1A1 = 0;
+
 	//config comb
-	TCCR1A_REG.BYTE=(TCCR1A_REG.BYTE & TCCR1A_COMB_MASK ) | (CONFIG->COM_B);
+	TCCR1A_REG.Bits.COM1B0 = 0;
+	TCCR1A_REG.Bits.COM1B1 = 1;
+
 
 	/*INTERRUPT*/
-	switch(CONFIG->INTERRUPT)
-	{
-	case NO_INTERRUPT:
+	TIMSK_REG.Bits.OCIE1A = TIMSK_REG.Bits.OCIE1B = TIMSK_REG.Bits.TOIE1 = 0;
 
-		TIMSK_REG.Bits.OCIE1A = TIMSK_REG.Bits.OCIE1B = TIMSK_REG.Bits.TOIE1 = 0;
-		break;
-	case OCIE_1_A:
-
-		TIMSK_REG.Bits.OCIE1A=1;
-		break;
-	case OCIE_1_B:
-
-		TIMSK_REG.Bits.OCIE1B=1;
-		break;
-	case TOIE_1:
-
-		TIMSK_REG.Bits.TOIE1=1;
-		break;
-	case WITH_INTERRUPT:
-
-		TIMSK_REG.Bits.OCIE1A = TIMSK_REG.Bits.OCIE1B = TIMSK_REG.Bits.TOIE1 = 1;
-		break;
-	}
 	//start timer clock
 	TCCR1B_REG.BYTE = (TCCR1B_REG.BYTE&TCRR1_Mask)|(CONFIG->CLK);
 
 }
-void Timer1_SetCompareVal(u16 CompareVAL_A)
+void Timer1_SetCompareVal_A(const u16 CompareVAL_A)
 {
 	//set compare Val
 	Timer1_OCR1A=CompareVAL_A;
 
 }
-void Timer1_SetCompareVal_B(u16 CompareVAL_B)
+void Timer1_SetCompareVal_B(const u16 CompareVAL_B)
 {
 	//set compare Val
 	Timer1_OCR1B=CompareVAL_B;
 }
-void Timer1_SetTop(u16 ICR_Top)
+void Timer1_SetICR1(const u16 ICR1_Top)
 {
 	//Set ICR
-	ICR1_REG=ICR_Top;
+	ICR1_REG=ICR1_Top;
+}
+
+void Timer1_SetTCNT1(const u16 TCNT1_Top)
+{
+	TCNT1_REG=TCNT1_Top;
 }
 
 void Timer1_deInit(void)

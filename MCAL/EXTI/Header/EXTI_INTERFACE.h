@@ -19,8 +19,8 @@ void __vector_1() __attribute__((signal));
 void __vector_2() __attribute__((signal));
 void __vector_3() __attribute__((signal));
 
-void EXTO_CallBackInt0(void (*pf)(void));
-void EXTO_CallBackInt1(void (*pf)(void));
-void EXTO_CallBackInt2(void (*pf)(void));
+void EXTO_CallBackInt0(const void (*pf)(void));
+void EXTO_CallBackInt1(const void (*pf)(void));
+void EXTO_CallBackInt2(const void (*pf)(void));
 
 #endif /* MCAL_EXTI_HEADER_EXTI_INTERFACE_H_ */

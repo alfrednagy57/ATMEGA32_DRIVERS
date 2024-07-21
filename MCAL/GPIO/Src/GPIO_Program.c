@@ -13,7 +13,7 @@
 #include "../Header/GPIO_Register.h"
 /*Direction*/
 
-void GPIO_SetDirectionForPin(u8 GroupName,u8 PinNumber,u8 DirectionState)
+void GPIO_SetDirectionForPin(const u8 GroupName,const u8 PinNumber,const const u8 DirectionState)
 {
 	if(GroupName<=GPIO_GroupD_ID &&GroupName>=GPIO_GroupA_ID)
 	{
@@ -60,7 +60,7 @@ void GPIO_SetDirectionForPin(u8 GroupName,u8 PinNumber,u8 DirectionState)
 }
 
 
-void GPIO_SetDirectionForGroup(u8 GroupName,u8 Direction)
+void GPIO_SetDirectionForGroup(const u8 GroupName,const u8 Direction)
 {
 	if(GroupName<=GPIO_GroupD_ID &&GroupName>=GPIO_GroupA_ID )
 	{
@@ -85,7 +85,7 @@ void GPIO_SetDirectionForGroup(u8 GroupName,u8 Direction)
 
 /*Output*/
 
-void GPIO_SetOutputForPin(u8 GroupName,u8 PinNumber,u8 OutputState)
+void GPIO_SetOutputForPin(const u8 GroupName,const u8 PinNumber,const const u8 OutputState)
 {
 	if(GroupName<=GPIO_GroupD_ID &&GroupName>=GPIO_GroupA_ID)
 	{
@@ -132,7 +132,7 @@ void GPIO_SetOutputForPin(u8 GroupName,u8 PinNumber,u8 OutputState)
 }
 
 
-void GPIO_SetOutputForGroup(u8 GroupName,u8 Output)
+void GPIO_SetOutputForGroup(const u8 GroupName,const u8 Output)
 {
 	if(GroupName<=GPIO_GroupD_ID &&GroupName>=GPIO_GroupA_ID )
 	{
@@ -155,7 +155,7 @@ void GPIO_SetOutputForGroup(u8 GroupName,u8 Output)
 }
 
 
-void GPIO_TogOutputForPin(u8 GroupName,u8 PinNumber)
+void GPIO_TogOutputForPin(const u8 GroupName,const u8 PinNumber)
 {
 	if(GroupName<=GPIO_GroupD_ID &&GroupName>=GPIO_GroupA_ID )
 	{
@@ -180,7 +180,7 @@ void GPIO_TogOutputForPin(u8 GroupName,u8 PinNumber)
 	}
 }
 
-void GPIO_TogOutputForGroup(u8 GroupName)
+void GPIO_TogOutputForGroup(const u8 GroupName)
 {
 	if(GroupName<=GPIO_GroupD_ID &&GroupName>=GPIO_GroupA_ID )
 	{
@@ -205,7 +205,7 @@ void GPIO_TogOutputForGroup(u8 GroupName)
 
 /*Read*/
 
-u8 GPIO_ReadValueForPin(u8 GroupName,u8 PinNumber)
+u8 GPIO_ReadValueForPin(const u8 GroupName,const u8 PinNumber)
 {
 	u8 Res=0;
 	if(GroupName<=GPIO_GroupD_ID &&GroupName>=GPIO_GroupA_ID )
@@ -230,7 +230,7 @@ u8 GPIO_ReadValueForPin(u8 GroupName,u8 PinNumber)
 }
 
 
-u8 GPIO_ReadValueForGroup(u8 GroupName)
+u8 GPIO_ReadValueForGroup(const u8 GroupName)
 {
 	u8 Res=0;
 	if(GroupName<=GPIO_GroupD_ID &&GroupName>=GPIO_GroupA_ID )

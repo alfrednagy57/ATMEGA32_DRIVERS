@@ -5,15 +5,17 @@
  *      Author: 20102
  */
 
+#include"Timer1_Register.h"
+
 #ifndef MCAL_TIMER1_HEADER_TIMER1_INTERFACE_H_
 #define MCAL_TIMER1_HEADER_TIMER1_INTERFACE_H_
 
-#include"Timer1_Register.h"
+void Timer1_Init(const CONFIG_TYPE_Timer1 * CONFIG);
+void Timer1_SetCompareVal_A(const u16 CompareVAL_A);
+void Timer1_SetCompareVal_B(const u16 CompareVAL_B);
+void Timer1_SetICR1(const u16 ICR1_Top);
+void Timer1_SetTCNT1(const u16 TCNT1_Top);
 
-void Timer1_Init(CONFIG_TYPE * CONFIG);
-void Timer1_SetCompareVal_A(u16 CompareVAL_A);
-void Timer1_SetCompareVal_B(u16 CompareVAL_B);
-void Timer1_SetTop(u16 ICR_Top);
 void Timer1_deInit(void);
 
 void Timer1_setCallBack_OV(void (*a_ptr)(void));

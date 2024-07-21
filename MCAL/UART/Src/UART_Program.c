@@ -7,7 +7,7 @@
 
 #include "../Header/UART_Interface.h"
 
-void UART_Init(UART_BaudRateType * BAUD)
+void UART_Init(const UART_BaudRateType * BAUD)
 {
 	// 1 stop bit - no parity - 8 bits data - no interrupt - asynchronous
 	// asynchronous - 0 parity - 1 stop bit

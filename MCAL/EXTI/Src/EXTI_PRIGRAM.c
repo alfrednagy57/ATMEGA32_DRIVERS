@@ -194,21 +194,21 @@ void __vector_3()
 	}
 }
 
-void EXTO_CallBackInt0(void(*pf) (void))
+void EXTO_CallBackInt0(const void(*pf) (void))
 {
 	if(pf!=null)
 	{
 		GInt0=pf;
 	}
 }
-void EXTO_CallBackInt1(void(*pf) (void))
+void EXTO_CallBackInt1(const void(*pf) (void))
 {
 	if(pf!=null)
 	{
 		GInt1=pf;
 	}
 }
-void EXTO_CallBackInt2(void (*pf)(void))
+void EXTO_CallBackInt2(const void (*pf)(void))
 {
 	if(pf!=null)
 	{

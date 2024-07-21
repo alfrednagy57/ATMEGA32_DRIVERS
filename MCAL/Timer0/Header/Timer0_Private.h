@@ -55,10 +55,10 @@ typedef enum
 
 typedef enum
 {
-	Normal,
-	Phase_Correct,
-	CTC,
-	FastPWM
+	Normal_Timer0,
+	Phase_Correct_Timer0,
+	CTC_Timer0,
+	FastPWM_Timer0
 }Timer0_Operation_Modes;
 
 typedef enum

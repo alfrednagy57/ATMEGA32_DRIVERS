@@ -25,7 +25,7 @@ typedef union
 		u8 COM1A0 : 1;
 		u8 COM1A1 : 1;
 	}Bits;
-}Type_TCCR1A_REG;
+}Type_TCCR1A_REG__T1;
 
 typedef union
 {
@@ -41,7 +41,7 @@ typedef union
 		u8 ICES1    : 1;
 		u8 ICNC1    : 1;
 	}Bits;
-}Type_TCCR1B_REG;
+}Type_TCCR1B_REG__T1;
 
 typedef union
 {
@@ -57,7 +57,7 @@ typedef union
 		u8 UNUSED_3    : 1;
 		u8 UNUSED_4    : 1;
 	}Bits;
-}Type_TIMSK_REG;
+}Type_TIMSK_REG__T1;
 
 typedef union
 {
@@ -73,7 +73,7 @@ typedef union
 		u8 UNUSED_3     : 1;
 		u8 UNUSED_4     : 1;
 	}Bits;
-}Type_TIFR_REG;
+}Type_TIFR_REG__T1;
 
 typedef enum
 {
@@ -85,11 +85,11 @@ typedef enum
 
 typedef enum
 {
-	Normal,
+	Normal_Timer1,
 	__8_BITS_PHASE,
 	__9_BITS_PHASE,
 	__10_BITS_PHASE,
-	CTC,
+	CTC_Timer1,
 	__8_BITS_FAST,
 	__9_BITS_FAST,
 	__10_BITS_FAST,
@@ -117,31 +117,18 @@ typedef enum
 	EXTERNAL_CLK_ON_RISING_EDGE_T1
 
 } TIMER1_ClockType;
-typedef enum
-{
-	NO_INTERRUPT,
-	OCIE_1_A,
-	OCIE_1_B,
-	TOIE_1,
-	WITH_INTERRUPT
-}TYPE_Interrupt;
+
+
 typedef struct
 {
-	u8 FOC1A_STATE;
-	u8 FOC1B_STATE;
-
-	u16 PRE_VALUE_TCNT1;
-	u16 PRE_VALUE_ICR1;
-	u16 PRE_VALUE_OCR1B;
-	u16 PRE_VALUE_OCR1A;
+	u16 Timer1_TCNT1_VAL;
+	u16 Timer1_OCR1A_VAL;
+	u16 Timer1_OCR1B_VAL;
+	u16 Timer1_ICR1_REG;
 
 	TIMER1_ClockType CLK;
-	WAVE_GENERATION_MODES WGM;
-	Type_COM1_A_B_0_1 COM_A;
-	Type_COM1_A_B_0_1 COM_B;
-	TYPE_Interrupt INTERRUPT;
 
-}CONFIG_TYPE;
+}CONFIG_TYPE_Timer1;
 
 #define PreScaleMask  0x07
 #define TCRR1_Mask    0xF8

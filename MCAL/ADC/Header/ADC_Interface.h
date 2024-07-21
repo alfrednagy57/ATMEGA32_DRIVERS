@@ -11,7 +11,7 @@
 #define MCAL_ADC_HEADER_ADC_INTERFACE_H_
 
 void ADC_Init(const ADC_Config *CONFIG);
-u16 ADC_Get_DigitalValue(u8 Channel);
+u16 ADC_Get_DigitalValue(const u8 Channel);
 
 
 #endif /* MCAL_ADC_HEADER_ADC_INTERFACE_H_ */
