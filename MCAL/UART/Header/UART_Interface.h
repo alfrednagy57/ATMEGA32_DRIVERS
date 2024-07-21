@@ -10,10 +10,9 @@
 #ifndef MCAL_UART_HEADER_UART_INTERFACE_H_
 #define MCAL_UART_HEADER_UART_INTERFACE_H_
 
-
-void UART_Init(const  UART_BaudRateType * BAUD);
-void UART_SentData(const u8 Data);
-void UART_SenDString(const u8* Data);
+void UART_Init(const UART_BaudRateType BAUD);
+void UART_SendData(const u8 Data);
+void UART_SendString(const u8* Data);
 void UART_ReceiveData(u8 *ReturnData);
 void UART_DisableTx();
 void UART_DisableRx();

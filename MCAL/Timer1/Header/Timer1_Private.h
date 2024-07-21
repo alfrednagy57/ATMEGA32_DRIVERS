@@ -128,6 +128,11 @@ typedef struct
 
 	TIMER1_ClockType CLK;
 
+	Type_COM1_A_B_0_1 COMA;
+	Type_COM1_A_B_0_1 COMB;
+
+	WAVE_GENERATION_MODES WGM;
+
 }CONFIG_TYPE_Timer1;
 
 #define PreScaleMask  0x07

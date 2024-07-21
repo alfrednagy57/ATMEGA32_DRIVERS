@@ -15,17 +15,24 @@ static void (* G_Ptr_CM_A)(void)=NULL;
 void Timer1_Init(const CONFIG_TYPE_Timer1 * CONFIG)
 {
 	//set wave generating
-	TCCR1A_REG.Bits.WGM10= 0;
-	TCCR1A_REG.Bits.WGM11= 1;
+	TCCR1A_REG.Bits.WGM10= CONFIG->WGM & 0x01;
+	TCCR1A_REG.Bits.WGM11= ( (CONFIG->WGM & 0x02)>>1);
 
-	TCCR1B_REG.Bits.WGM12= 1;
-	TCCR1B_REG.Bits.WGM13= 1;
+	TCCR1B_REG.Bits.WGM12= ( (CONFIG->WGM & 0x04)>>2);
+	TCCR1B_REG.Bits.WGM13= ( (CONFIG->WGM & 0x08)>>3);
 
 	//configuring FOC1 A-B
 	/*foc must be = 1 if the desired pin is operating as non_pwm*/
-	TCCR1A_REG.Bits.FOC1A=0;
-	TCCR1A_REG.Bits.FOC1B=0;
-
+	if(CONFIG -> WGM == Normal_Timer1 || CONFIG -> WGM == CTC_Timer1 || CONFIG -> WGM == CONFIG -> WGM == Normal_Timer1)
+	{
+		TCCR1A_REG.Bits.FOC1A=1;
+		TCCR1A_REG.Bits.FOC1B=1;
+	}
+	else
+	{
+		TCCR1A_REG.Bits.FOC1A=0;
+		TCCR1A_REG.Bits.FOC1B=0;
+	}
 	//Set ICR
 	ICR1_REG=CONFIG->Timer1_ICR1_REG;
 
@@ -37,12 +44,12 @@ void Timer1_Init(const CONFIG_TYPE_Timer1 * CONFIG)
 	TCNT1_REG=CONFIG->Timer1_TCNT1_VAL;
 
 	//config coma
-	TCCR1A_REG.Bits.COM1A0 = 0;
-	TCCR1A_REG.Bits.COM1A1 = 0;
+	TCCR1A_REG.Bits.COM1A0 = (CONFIG->COMA & 0x01);
+	TCCR1A_REG.Bits.COM1A1 = ( (CONFIG->COMA & 0x02)>>1);
 
 	//config comb
-	TCCR1A_REG.Bits.COM1B0 = 0;
-	TCCR1A_REG.Bits.COM1B1 = 1;
+	TCCR1A_REG.Bits.COM1B0 = (CONFIG->COMB & 0x01);
+	TCCR1A_REG.Bits.COM1B1 =  ( (CONFIG->COMB & 0x02)>>1);
 
 
 	/*INTERRUPT*/

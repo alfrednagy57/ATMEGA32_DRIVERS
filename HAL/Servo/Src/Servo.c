@@ -7,12 +7,19 @@
 
 #include "../../../MCAL/Timer1/Header/Timer1_Interface.h"
 
+#include "../../../MCAL/GPIO/Header/GPIO_Interface.h"
+
 #include"../Header/Servo_Interface.h"
 
 void Servo_Init()
 {
+	GPIO_SetDirectionForPin(GPIO_GroupD_ID, GPIO_PIN4, GPIO_Output);//oco1B
+
 	/*timer1 must be in icr mode */
-	CONFIG_TYPE_Timer1 CONFIG={0,0,0,20000,F_CPU_8_T1};
+	CONFIG_TYPE_Timer1 CONFIG={0,0,0,20000,F_CPU_8_T1,
+			OC1_A_B_DISCONNECTED,
+			CLEAR_OC1_A_B_NON_INVERTING_PWM_MODE,
+			Fast_ICR1_TOP};
 
 	Timer1_Init(&CONFIG);
 }
