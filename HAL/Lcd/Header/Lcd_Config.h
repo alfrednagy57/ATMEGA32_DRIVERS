@@ -13,8 +13,8 @@
 #define Lcd_ControlGroup GPIO_GroupA_ID
 #define Lcd_DataGroup    GPIO_GroupB_ID
 
-#define Lcd_RS  GPIO_PIN1
-#define Lcd_E   GPIO_PIN2
+#define Lcd_RS  GPIO_PIN0
+#define Lcd_E   GPIO_PIN1
 
 #define LCD_BITS_MODE LCD_DATA_BITS_4
 

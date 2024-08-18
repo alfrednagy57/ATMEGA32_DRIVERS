@@ -19,6 +19,7 @@ void Lcd_Init(void)
 	GPIO_SetDirectionForPin(Lcd_ControlGroup,Lcd_E,Lcd_HighForPin);
 	//  GPIO_SetDirectionForPin(Lcd_ControlGroup,Lcd_On,Lcd_HighForPin);
 	//	GPIO_SetDirectionForPin(Lcd_ControlGroup,Lcd_RW,Lcd_HighForPin);
+	_delay_ms(20);
 
 #if LCD_BITS_MODE  == LCD_DATA_BITS_8
 
@@ -75,7 +76,7 @@ void Lcd_SendCommand(u8 Command)
 	GPIO_SetOutputForPin(Lcd_ControlGroup,Lcd_E,Lcd_HighForPin);
 	_delay_ms(1);
 
-	GPIO_SetOutputForGroup(Lcd_DataGroup,(Command<<4));
+	GPIO_SetOutputForGroup(Lcd_DataGroup,(Command&0x0F)<<4);
 	_delay_ms(1);	/* delay for processing Tdsw = 100ns */
 	GPIO_SetOutputForPin(Lcd_ControlGroup,Lcd_E,Lcd_Low);
 	_delay_ms(1);
@@ -88,6 +89,7 @@ void Lcd_SendCommand(u8 Command)
 void Lcd_SendData(u8 Data)
 {
 	GPIO_SetOutputForPin(Lcd_ControlGroup,Lcd_RS,Lcd_HighForPin);//DATA
+	_delay_ms(1);
 	GPIO_SetOutputForPin(Lcd_ControlGroup,Lcd_E,Lcd_HighForPin);
 	_delay_ms(1);
 #if LCD_BITS_MODE  == LCD_DATA_BITS_8
@@ -107,7 +109,7 @@ void Lcd_SendData(u8 Data)
 	GPIO_SetOutputForPin(Lcd_ControlGroup,Lcd_E,Lcd_HighForPin);
 	_delay_ms(1);
 
-	GPIO_SetOutputForGroup(Lcd_DataGroup,(Data<<4));
+	GPIO_SetOutputForGroup(Lcd_DataGroup,(Data&0x0F)<<4);
 
 	_delay_ms(1);	/* delay for processing Tdsw = 100ns */
 	GPIO_SetOutputForPin(Lcd_ControlGroup,Lcd_E,Lcd_Low);
