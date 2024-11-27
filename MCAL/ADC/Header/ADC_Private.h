@@ -131,6 +131,7 @@ typedef enum
 typedef struct
 {
 
+	u8 Channel;
 	ADC_Auto_Trigger_Source TRIGGER;
 	Type_Reference_Selection REFRENCE_VOLT;
 	ADC_Prescaler PRE_SCALE;
@@ -152,7 +153,7 @@ typedef struct
 #define ADC_TRIGGER_MASK 0x1F
 
 #define ADC_REFRENCE_VOLT_MASK  0x3F
-
+#define ADC_CHANNEL_MASK 0x1F
 #define ADC_Group_ID	  1
 #define ADC_PIN_DIRECTION 0
 
