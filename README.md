@@ -66,5 +66,5 @@ atmega32_HAL_MCAL_Drivers/
 
 
 ```
-#Contact
-For any inquiries, please contact the project maintainer at [linkedin](https://www.linkedin.com/in/alfred-nagy-882445224/).
+# Contact
+- For any inquiries, please contact the project maintainer at [linkedin](https://www.linkedin.com/in/alfred-nagy-882445224/).
