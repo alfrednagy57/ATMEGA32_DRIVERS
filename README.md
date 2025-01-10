@@ -61,7 +61,8 @@ atmega32_HAL_MCAL_Drivers/
 │   ├── TIMER1/         
 │   ├── TWI/         
 │   ├── UART/  
-│   ├── WDT/    
+│   ├── WDT/
+│   ├── internal eeprom/       
 └── README.md            # Repository README file
 
 
